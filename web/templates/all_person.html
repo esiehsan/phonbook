@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html dir="rtl">
+    <header>
+        <style>
+            table, td, th {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                border-collapse: collapse;
+                
+                border-width: 1px;
+                border-color: forestgreen;            
+                align-items: center;
+                align-content: center;
+            
+                
+            }
+            tr {
+                height: 35px
+            }
+
+            tr:hover {
+                background-color: aquamarine;
+                
+            }
+
+            th, td {
+                border-bottom: 1px solid #ddd;
+                
+            }
+        </style>
+
+    </header>
+    <body>
+        <table width="80%" align="center">
+            <tr>
+                <th >کد</th>
+                <th >نام </th>
+                <th > نام خانوادگی</th>
+                <th > شماره ثابت</th>
+                <th > شماره داخلی</th>
+                <th >شماره موبایل</th>
+                <th >پست الکترونیک</th>
+            </tr>
+            {% for person in persons %}            
+            <tr align="center">
+                <td >{{person.id}}</td>
+                <td >{{person.fName}}</td>
+                <td >{{person.lName}}</td>
+                <td >{{person.directPhone}}</td>
+                <td >{{person.internalPhone}}</td>
+                <td >{{person.mobilePhone}}</td>
+                <td >{{person.email}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </body>
+</html>
