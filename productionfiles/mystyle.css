@@ -1,0 +1,23 @@
+body {
+    background-color: linen;
+}
+
+table, th {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-collapse: collapse;
+    align-items: center;
+    align-content: center;
+}
+
+tr {
+    height: 35px
+}
+
+tr:hover {
+    background-color: aquamarine;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    text-align: right
+}
