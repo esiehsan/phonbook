@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl">
+    <head>
+        <link href="{% static 'mystyle.css' %}" rel="stylesheet" />
+        <title>همکاران</title>
+    </head>
+    <body>
+        <h2>لیست همکاران</h2>
+        <br/>
+        <table width="80%">
+            <tr>
+                <th> کد ملی</th>
+                <th> نام</th>
+                <th> نام خانوادگی</th>
+                <th> نوع استخدام</th>
+                <th> حالت اشتغال</th>
+            </tr>
+            {% for employee in employees %}
+            <tr>
+                <td> {{employee.nationalCode}}</th>
+                <td> {{employee.fName}}</td>
+                <td> {{employee.lName}}</td>
+                <td> {{employee.get_type_of_employment_display}}</td>
+                <td> {{employee.get_employment_status_display}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </body>
+</html>
