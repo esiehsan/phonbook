@@ -1,6 +1,8 @@
 from django.db import models
 
 # Create your models here.
+
+
 class Employee(models.Model):
     nationalCode = models.CharField(max_length=10, primary_key=True)
     fName = models.CharField(max_length=100)
@@ -17,7 +19,7 @@ class Employee(models.Model):
     type_of_employment = models.CharField(
         max_length=2,
         choices=EMPLOYMENT_TYPES
-        )
+    )
 
     EMPLOYMENT_STATUS = [
         ('SH', 'شاغل'),
@@ -36,7 +38,7 @@ class Employee(models.Model):
         return self.fName + ' ' + self.lName + ' ' + self.get_employment_status_display()
 
 
-#class of childs employee
+# class of childs employee
 class Child(models.Model):
     fName = models.CharField(max_length=100)
     lName = models.CharField(max_length=100)
@@ -45,12 +47,10 @@ class Child(models.Model):
     sex = models.BooleanField()
 
     parent = models.ForeignKey(
-        Employee, 
+        Employee,
         on_delete=models.CASCADE
-        )
+    )
 
     def __str__(self):
         res = '{} {} فرزند {}'.format(self.fName, self.lName, self.parent)
         return res
-
-

@@ -14,3 +14,17 @@ def employees(request):
     }
 
     return HttpResponse(template.render(context, request))
+
+
+def childs(request):
+    "display all childs of the employee"
+    nCode = request.GET['nCode']
+    employee = Employee.objects.filter(nationalCode=nCode)
+    childs = Child.objects.filter(parent=employee[0])
+    context = {
+        'employee': employee, 
+        'childs': childs,
+    }
+    
+    template = loader.get_template('childs.html')
+    return HttpResponse(template.render(context, request))
