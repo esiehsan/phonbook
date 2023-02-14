@@ -24,7 +24,7 @@
                 <td> {{employee.get_type_of_employment_display}}</td>
                 <td> {{employee.get_employment_status_display}}</td>
 
-                <td><a href="/family/childs/?nCode={{employee.nationalCode}}">مشخصات فرزندان</a> </td>
+                <td><a href="/family/childs/{{employee.nationalCode}}">مشخصات فرزندان</a> </td>
             </tr>
             {% endfor %}
         </table>

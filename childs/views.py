@@ -16,9 +16,9 @@ def employees(request):
     return HttpResponse(template.render(context, request))
 
 
-def childs(request):
+def childs(request, nCode):
     "display all childs of the employee"
-    nCode = request.GET['nCode']
+    #nCode = request.GET['nCode']
     employee = Employee.objects.filter(nationalCode=nCode)
     childs = Child.objects.filter(parent=employee[0])
     context = {
