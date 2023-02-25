@@ -7,17 +7,17 @@ from django.db.models import Q
 
 # Create your views here.
 @csrf_exempt  #remove check for csrf cookie
-def all_persons(request):
+def persons(request):
     """check request method. if method is post save search_phrase and 
     filter data in person table and return http that make with all_person.html 
     template
     """
-    if(request.method == 'POST'):
-        search_phrase = request.POST['searchtext']
+    if len(request.GET):
+        search_phrase = request.GET['searchtext']
+        persons = Person.objects.filter(Q(fName__contains=search_phrase) | Q(lName__contains=search_phrase)).values()
     else:
-        search_phrase = ''
+        persons = Person.objects.all()
     
-    persons = Person.objects.filter(Q(fName__contains=search_phrase) | Q(lName__contains=search_phrase)).values()
     template = loader.get_template('all_person.html')
     context = {
         'persons': persons,
