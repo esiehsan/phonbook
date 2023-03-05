@@ -5,6 +5,8 @@ from .models import Person
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Q
 
+from .forms import RegForm
+
 # Create your views here.
 @csrf_exempt  #remove check for csrf cookie
 def persons(request):
@@ -24,3 +26,15 @@ def persons(request):
     }
        
     return HttpResponse(template.render(context, request))
+
+def register(request):
+    form = RegForm()
+    template = loader.get_template('register.html')
+    context = {
+        'form' : form,
+    }
+
+    return HttpResponse(template.render(context, request))
+
+def detail(request, person_id):
+    return HttpResponse('detail of person records: '+ str(person_id))

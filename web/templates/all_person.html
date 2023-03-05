@@ -15,10 +15,38 @@
     <title>اطلاعات تماس</title>
   </head>
   <body>
-    <div class="container w-75 ">
-      <div class="col ms-3 my-3">
-        <h4>فهرست پرسنل</h4>
-      </div>
+    <div class="container">
+      <header class="navbar navbar-expand bd-navbar steaky-top">
+      <ul class="nav  mt-5 ">
+        <li class="nav-item small">
+          <a class="nav-link active link-success " aria-current="page" href="">صفحه اصلی</a>
+        </li>
+       
+        <li class="nav-item small">
+          <a class="nav-link link-success" href="/admin">تنظیمات</a>
+        </li>
+        
+      </ul>
+    </header>
+      <!-- <nav class="navbar navbar-expand-lg bg-body-tertiary bg-success-subtle">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item small">
+                <a class="nav-link active " aria-current="page" href="">صفحه اصلی</a>
+              </li>
+              <li class="nav-item small">
+                |
+              </li>
+              <li class="nav-item small">
+                <a class="nav-link" href="/admin">تنظیمات</a>
+              </li>
+              
+            </ul>
+      
+
+        </div>
+      </nav> -->
 
       <form method="get">
           <div class="col-lg-3 col-sm-6 col my-4">
@@ -39,7 +67,9 @@
         
       </form>
 
-      <table class="table table-success table-striped table-responsive table-sm small table-hover" >
+
+{% if persons %}
+      <table class="table table-success table-striped table-responsive table-sm small table-hover align-middle" >
         <thead class="text-center">
         <tr>
           <th>کد</th>
@@ -53,18 +83,22 @@
       </thead>
       <tbody class="table-group-divider">
         {% for person in persons %}
-        <tr align="center">
-          <td>{{person.id}}</td>
+        <tr align="center" >
+          <td> {{person.id}} </td>
           <td>{{person.fName}}</td>
           <td>{{person.lName}}</td>
           <td>{{person.directPhone}}</td>
           <td>{{person.internalPhone}}</td>
           <td>{{person.mobilePhone}}</td>
-          <td>{{person.email}}</td>
+          <td><a href="{{person.id}}/" class="btn btn-outline-success btn-sm"><small> ویرایش </small></a></td>
         </tr>
         {% endfor %}
         </tbody>
       </table>
+
+      {% else %}
+      <p class="p-3">شخصی با این مشخصات یافت نشد!</p>
+    {% endif %}
     </div>
 
     <script
