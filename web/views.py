@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse, JsonResponse, Http404
 from django.template import loader
 from .models import Person
 from django.views.decorators.csrf import csrf_exempt
@@ -20,12 +20,12 @@ def persons(request):
     else:
         persons = Person.objects.all()
     
-    template = loader.get_template('all_person.html')
+    # template = loader.get_template('all_person.html')
     context = {
         'persons': persons,
     }
        
-    return HttpResponse(template.render(context, request))
+    return render(request, 'all_person.html', context)
 
 def register(request):
     form = RegForm()
@@ -37,4 +37,7 @@ def register(request):
     return HttpResponse(template.render(context, request))
 
 def detail(request, person_id):
-    return HttpResponse('detail of person records: '+ str(person_id))
+    person = get_object_or_404(Person, id = person_id)
+
+    context = {'person': person}
+    return render(request, 'detail.html', context)
