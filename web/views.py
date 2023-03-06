@@ -8,7 +8,6 @@ from django.db.models import Q
 from .forms import RegForm
 
 # Create your views here.
-@csrf_exempt  #remove check for csrf cookie
 def persons(request):
     """check request method. if method is post save search_phrase and 
     filter data in person table and return http that make with all_person.html 
@@ -27,14 +26,6 @@ def persons(request):
        
     return render(request, 'all_person.html', context)
 
-def register(request):
-    form = RegForm()
-    template = loader.get_template('register.html')
-    context = {
-        'form' : form,
-    }
-
-    return HttpResponse(template.render(context, request))
 
 def detail(request, person_id):
     person = get_object_or_404(Person, id = person_id)
